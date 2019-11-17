@@ -51,38 +51,43 @@ WHERE EXTRACT(YEAR FROM hire_date) = 1986;
 SELECT dept_manager.dept_no, departments.dept_name,
 	dept_manager.emp_no, employees.first_name, employees.last_name,
 	dept_manager.from_date, dept_manager.to_date
-	FROM dept_manager
-	INNER JOIN departments ON
-	dept_manager.dept_no = departments.dept_no
-	INNER JOIN employees ON
-	dept_manager.emp_no = employees.emp_no;
+FROM dept_manager
+INNER JOIN departments ON
+dept_manager.dept_no = departments.dept_no
+INNER JOIN employees ON
+dept_manager.emp_no = employees.emp_no;
 
-  SELECT dept_emp.dept_no, employees.first_name,
+SELECT dept_emp.dept_no, employees.first_name,
   	employees.last_name, departments.dept_name
-  	FROM employees
-  	INNER JOIN dept_emp ON
-  	dept_emp.emp_no = employees.emp_no
-  	INNER JOIN departments ON
-  	dept_emp.dept_no = departments.dept_name;
+FROM employees
+INNER JOIN dept_emp ON
+dept_emp.emp_no = employees.emp_no
+INNER JOIN departments ON
+dept_emp.dept_no = departments.dept_name;
 
 SELECT * FROM employees
 WHERE first_name = 'Hercules' AND last_name LIKE 'B_';
 
 SELECT employees.emp_no, employees.first_name,
 	employees.last_name, departments.dept_name
-	FROM employees
-	INNER JOIN dept_emp ON
-	dept_emp.emp_no = employees.emp_no
-	INNER JOIN departments ON
-	dept_emp.dept_no = departments.dept_name
-	WHERE departments.dept_name = 'Sales';
+FROM employees
+INNER JOIN dept_emp ON
+dept_emp.emp_no = employees.emp_no
+INNER JOIN departments ON
+dept_emp.dept_no = departments.dept_name
+WHERE departments.dept_name = 'Sales';
 
-  SELECT employees.emp_no, employees.first_name,
+SELECT employees.emp_no, employees.first_name,
   	employees.last_name, departments.dept_name
-  	FROM employees
-  	INNER JOIN dept_emp ON
-  	dept_emp.emp_no = employees.emp_no
-  	INNER JOIN departments ON
-  	dept_emp.dept_no = departments.dept_name
-  	WHERE departments.dept_name = 'Sales'
-  	AND departments.dept_name = 'Development';
+FROM employees
+INNER JOIN dept_emp ON
+dept_emp.emp_no = employees.emp_no
+INNER JOIN departments ON
+dept_emp.dept_no = departments.dept_name
+WHERE departments.dept_name = 'Sales'
+AND departments.dept_name = 'Development';
+
+SELECT employees.last_name, count(*)
+FROM employees
+GROUP BY employees.last_name
+ORDER BY count(*) DESC;
